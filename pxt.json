@@ -1,0 +1,50 @@
+{
+    "name": "MAZE",
+    "description": "",
+    "dependencies": {
+        "device": "*",
+        "pxt-raycasting": "github:aqeeaqee/pxt-raycasting#v0.3.13",
+        "Timers": "github:microsoft/arcade-timers#v1.1.0",
+        "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.0.1",
+        "controller": "*",
+        "pxt-button-combos": "github:jwunderl/pxt-button-combos#v0.0.24",
+        "Color Fading": "github:jwunderl/pxt-color#v0.2.2"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "assets.json",
+        "tilemap.g.jres",
+        "tilemap.g.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "1.12.17",
+        "targetId": "arcade"
+    },
+    "supportedTargets": [
+        "arcade"
+    ],
+    "preferredEditor": "blocksprj",
+    "palette": [
+        "#000000",
+        "#f5edba",
+        "#9d303b",
+        "#d26471",
+        "#e4943a",
+        "#c0c741",
+        "#647d34",
+        "#34859d",
+        "#17434b",
+        "#7ec4c1",
+        "#584563",
+        "#8c8fae",
+        "#3e2137",
+        "#d79b7d",
+        "#9a6348",
+        "#1f0e1c"
+    ]
+}
