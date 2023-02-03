@@ -1,5 +1,5 @@
 {
-    "name": "MAZE",
+    "name": "MAZE ",
     "description": "",
     "dependencies": {
         "device": "*",
@@ -8,21 +8,20 @@
         "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.0.1",
         "controller": "*",
         "pxt-button-combos": "github:jwunderl/pxt-button-combos#v0.0.24",
-        "Color Fading": "github:jwunderl/pxt-color#v0.2.2"
+        "Color Fading": "github:jwunderl/pxt-color#v0.2.2",
+        "multiplayer": "*"
     },
     "files": [
         "main.blocks",
-        "main.ts",
         "README.md",
         "assets.json",
         "tilemap.g.jres",
-        "tilemap.g.ts"
+        "tilemap.g.ts",
+        "main.ts"
     ],
-    "testFiles": [
-        "test.ts"
-    ],
+    "testFiles": [],
     "targetVersions": {
-        "target": "1.12.17",
+        "target": "1.12.18",
         "targetId": "arcade"
     },
     "supportedTargets": [

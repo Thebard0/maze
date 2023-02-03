@@ -6,21 +6,9 @@ namespace SpriteKind {
     export const Bossplayer = SpriteKind.create()
     export const Cutsence = SpriteKind.create()
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.over(false, effects.confetti)
-})
-scene.onOverlapTile(SpriteKind.Bossplayer, sprites.dungeon.floorLight2, function (sprite, location) {
-    info.startCountdown(10)
-})
-info.onCountdownEnd(function () {
-    Endcutsence()
-})
-scene.onOverlapTile(SpriteKind.level3, sprites.dungeon.doorLockedNorth, function (sprite, location) {
-    Maze2()
-})
 function Boss_fight () {
     if (Deadmodeon == 0) {
-        tiles.setCurrentTilemap(tilemap`level27`)
+        tiles.setCurrentTilemap(tilemap`level43`)
         Final_boss = sprites.create(img`
             ........cccccccccccc............
             ........cccccccccccc............
@@ -64,7 +52,7 @@ function Boss_fight () {
         tiles.placeOnRandomTile(GOBLIN, sprites.dungeon.floorLight2)
         tiles.placeOnRandomTile(Final_boss, sprites.dungeon.doorOpenNorth)
     } else {
-        tiles.setCurrentTilemap(tilemap`level43`)
+        tiles.setCurrentTilemap(tilemap`level27`)
         Final_boss = sprites.create(img`
             ........cccccccccccc............
             ........cccccccccccc............
@@ -108,18 +96,6 @@ function Boss_fight () {
         tiles.placeOnRandomTile(Final_boss, sprites.dungeon.doorOpenNorth)
     }
 }
-sprites.onOverlap(SpriteKind.Level4, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.over(false, effects.confetti)
-})
-scene.onOverlapTile(SpriteKind.Level4, sprites.dungeon.doorLockedNorth, function (sprite, location) {
-    Boss_fight()
-})
-sprites.onOverlap(SpriteKind.Boss, SpriteKind.Bossplayer, function (sprite, otherSprite) {
-    game.over(false)
-})
-sprites.onOverlap(SpriteKind.LEVEL2, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.over(false, effects.confetti)
-})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedNorth, function (sprite, location) {
     if (Deadmodeon == 0) {
         tiles.setCurrentTilemap(tilemap`level39`)
@@ -133,8 +109,11 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.doorLockedNorth, function
         info.startCountdown(7.5)
     }
 })
-sprites.onOverlap(SpriteKind.level3, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.over(false, effects.confetti)
+scene.onOverlapTile(SpriteKind.Level4, sprites.dungeon.doorLockedNorth, function (sprite, location) {
+    Boss_fight()
+})
+scene.onOverlapTile(SpriteKind.LEVEL2, sprites.dungeon.doorLockedNorth, function (sprite, location) {
+    maze()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (GOBLIN.kind() == SpriteKind.Cutsence) {
@@ -160,8 +139,34 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         Render.jump(GOBLIN)
     }
 })
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Bossplayer, function (sprite, otherSprite) {
+sprites.onOverlap(SpriteKind.LEVEL2, SpriteKind.Enemy, function (sprite, otherSprite) {
+    game.over(false, effects.confetti)
+})
+scene.onOverlapTile(SpriteKind.Level4, assets.tile`transparency16`, function (sprite, location) {
+    tileUtil.coverAllTiles(sprites.dungeon.floorLight2, assets.tile`transparency16`)
+})
+controller.combos.attachCombo("B,b,b", function () {
+    if (Greyscaleon == 1) {
+        Greyscaleon = 0
+        color.startFade(color.originalPalette, color.GrayScale, 5000)
+        game.showLongText("Play in greyscale mode", DialogLayout.Bottom)
+    } else {
+        Greyscaleon = 1
+        color.startFade(color.GrayScale, color.originalPalette, 5000)
+        game.showLongText("Play in colour mode", DialogLayout.Bottom)
+    }
+})
+sprites.onOverlap(SpriteKind.Boss, SpriteKind.Bossplayer, function (sprite, otherSprite) {
     game.over(false)
+})
+info.onCountdownEnd(function () {
+    Endcutsence()
+})
+sprites.onOverlap(SpriteKind.Level4, SpriteKind.Enemy, function (sprite, otherSprite) {
+    game.over(false, effects.confetti)
+})
+scene.onOverlapTile(SpriteKind.Bossplayer, sprites.dungeon.floorLight2, function (sprite, location) {
+    info.startCountdown(10)
 })
 function Maze2 () {
     if (Deadmodeon == 0) {
@@ -299,11 +304,11 @@ function Maze2 () {
         tiles.placeOnRandomTile(GOBLIN, sprites.dungeon.floorLight2)
     }
 }
-scene.onOverlapTile(SpriteKind.LEVEL2, sprites.dungeon.doorLockedNorth, function (sprite, location) {
-    maze()
+scene.onOverlapTile(SpriteKind.level3, sprites.dungeon.doorLockedNorth, function (sprite, location) {
+    Maze2()
 })
-scene.onOverlapTile(SpriteKind.Level4, assets.tile`transparency16`, function (sprite, location) {
-    tileUtil.coverAllTiles(sprites.dungeon.floorLight2, assets.tile`transparency16`)
+sprites.onOverlap(SpriteKind.level3, SpriteKind.Enemy, function (sprite, otherSprite) {
+    game.over(false, effects.confetti)
 })
 function Endcutsence () {
     if (GOBLIN.kind() == SpriteKind.Bossplayer) {
@@ -1101,7 +1106,7 @@ function start () {
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Cutsence)
+            `, SpriteKind.Player)
         GOBLIN = Render.getRenderSpriteVariable()
         creature5 = sprites.create(img`
             . . . . c c c c c c . . . . . . 
@@ -1566,16 +1571,11 @@ function start () {
         GOBLIN.setKind(SpriteKind.Player)
     }
 }
-controller.combos.attachCombo("B,b,b", function () {
-    if (Greyscaleon == 1) {
-        Greyscaleon = 0
-        color.startFade(color.originalPalette, color.GrayScale, 5000)
-        game.showLongText("Play in greyscale mode", DialogLayout.Bottom)
-    } else {
-        Greyscaleon = 1
-        color.startFade(color.GrayScale, color.originalPalette, 5000)
-        game.showLongText("Play in colour mode", DialogLayout.Bottom)
-    }
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Bossplayer, function (sprite, otherSprite) {
+    game.over(false)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    game.over(false, effects.confetti)
 })
 function maze () {
     if (Deadmodeon == 0) {
@@ -1794,15 +1794,18 @@ function maze () {
 }
 let projectile: Sprite = null
 let creature4: Sprite = null
-let Greyscaleon = 0
 let creature3: Sprite = null
 let creature2: Sprite = null
 let creature5: Sprite = null
+let Greyscaleon = 0
 let GOBLIN: Sprite = null
 let Final_boss: Sprite = null
 let Deadmodeon = 0
 Deadmodeon = 0
 start()
+forever(function () {
+    music.playMelody("E B C5 A B G A F ", 120)
+})
 game.onUpdateInterval(500, function () {
     if (GOBLIN.kind() == SpriteKind.Bossplayer) {
         projectile = sprites.createProjectileFromSprite(img`
@@ -1825,7 +1828,4 @@ game.onUpdateInterval(500, function () {
             `, Final_boss, 50, 50)
         projectile.setFlag(SpriteFlag.AutoDestroy, true)
     }
-})
-forever(function () {
-    music.playMelody("E B C5 A B G A F ", 120)
 })
