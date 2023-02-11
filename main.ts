@@ -1804,7 +1804,7 @@ let Deadmodeon = 0
 Deadmodeon = 0
 start()
 forever(function () {
-    music.playMelody("E B C5 A B G A F ", 120)
+    music.playMelody("G B A G C5 B A B ", 120)
 })
 game.onUpdateInterval(500, function () {
     if (GOBLIN.kind() == SpriteKind.Bossplayer) {
