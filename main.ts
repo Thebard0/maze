@@ -140,7 +140,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 sprites.onOverlap(SpriteKind.LEVEL2, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.over(false, effects.confetti)
+    game.over(false, effects.hearts)
 })
 scene.onOverlapTile(SpriteKind.Level4, assets.tile`transparency16`, function (sprite, location) {
     tileUtil.coverAllTiles(sprites.dungeon.floorLight2, assets.tile`transparency16`)
@@ -157,13 +157,13 @@ controller.combos.attachCombo("B,b,b", function () {
     }
 })
 sprites.onOverlap(SpriteKind.Boss, SpriteKind.Bossplayer, function (sprite, otherSprite) {
-    game.over(false)
+    game.over(false, effects.hearts)
 })
 info.onCountdownEnd(function () {
     Endcutsence()
 })
 sprites.onOverlap(SpriteKind.Level4, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.over(false, effects.confetti)
+    game.over(false, effects.hearts)
 })
 scene.onOverlapTile(SpriteKind.Bossplayer, sprites.dungeon.floorLight2, function (sprite, location) {
     info.startCountdown(10)
@@ -308,7 +308,7 @@ scene.onOverlapTile(SpriteKind.level3, sprites.dungeon.doorLockedNorth, function
     Maze2()
 })
 sprites.onOverlap(SpriteKind.level3, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.over(false, effects.confetti)
+    game.over(false, effects.hearts)
 })
 function Endcutsence () {
     if (GOBLIN.kind() == SpriteKind.Bossplayer) {
@@ -1572,10 +1572,10 @@ function start () {
     }
 }
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Bossplayer, function (sprite, otherSprite) {
-    game.over(false)
+    game.over(false, effects.hearts)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.over(false, effects.confetti)
+    game.over(false, effects.hearts)
 })
 function maze () {
     if (Deadmodeon == 0) {
