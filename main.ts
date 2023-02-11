@@ -313,7 +313,7 @@ sprites.onOverlap(SpriteKind.level3, SpriteKind.Enemy, function (sprite, otherSp
 function Endcutsence () {
     if (GOBLIN.kind() == SpriteKind.Bossplayer) {
         if (Deadmodeon == 1) {
-            game.over(true, effects.confetti)
+            game.over(true, effects.hearts)
         } else {
             GOBLIN.setKind(SpriteKind.Cutsence)
             scene.setBackgroundImage(img`
