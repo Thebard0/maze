@@ -21,7 +21,7 @@
     ],
     "testFiles": [],
     "targetVersions": {
-        "target": "1.12.18",
+        "target": "1.12.22",
         "targetId": "arcade"
     },
     "supportedTargets": [
