@@ -146,15 +146,9 @@ scene.onOverlapTile(SpriteKind.Level4, assets.tile`transparency16`, function (sp
     tileUtil.coverAllTiles(sprites.dungeon.floorLight2, assets.tile`transparency16`)
 })
 controller.combos.attachCombo("B,b,b", function () {
-    if (Greyscaleon == 1) {
-        Greyscaleon = 0
-        color.startFade(color.originalPalette, color.GrayScale, 5000)
-        game.showLongText("Play in greyscale mode", DialogLayout.Bottom)
-    } else {
-        Greyscaleon = 1
-        color.startFade(color.GrayScale, color.originalPalette, 5000)
-        game.showLongText("Play in colour mode", DialogLayout.Bottom)
-    }
+    GOBLIN.setFlag(SpriteFlag.GhostThroughSprites, true)
+    GOBLIN.setFlag(SpriteFlag.GhostThroughWalls, true)
+    info.stopCountdown()
 })
 sprites.onOverlap(SpriteKind.Boss, SpriteKind.Bossplayer, function (sprite, otherSprite) {
     game.over(false, effects.hearts)
@@ -1797,12 +1791,16 @@ let creature4: Sprite = null
 let creature3: Sprite = null
 let creature2: Sprite = null
 let creature5: Sprite = null
-let Greyscaleon = 0
 let GOBLIN: Sprite = null
 let Final_boss: Sprite = null
 let Deadmodeon = 0
 Deadmodeon = 0
 start()
+game.onUpdate(function () {
+    if (GOBLIN.tileKindAt(TileDirection.Center, sprites.dungeon.greenOuterNorth0)) {
+        info.stopCountdown()
+    }
+})
 forever(function () {
     music.playMelody("G B A G C5 B A B ", 120)
 })
